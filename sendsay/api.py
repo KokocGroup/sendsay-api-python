@@ -115,8 +115,12 @@ class Sender(object):
         }
 
         LOGGER.debug('-- request %s, "%s"', self.api_url + self.redirect_prefix, action)
-        response = requests.post(self.api_url + self.redirect_prefix, data=post_data,
-                                 cert=self.cert)
+        response = requests.post(
+            self.api_url + self.redirect_prefix,
+            data=post_data,
+            cert=self.cert,
+            timeout=60
+        )
 
         # Parse the response as JSON
         try:
